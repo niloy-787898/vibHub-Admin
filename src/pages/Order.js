@@ -40,10 +40,6 @@ const columns = [
     title: "Date",
     dataIndex: "date",
   },
-  // {
-  //   title: "Action",
-  //   dataIndex: "action",
-  // },
 ];
 
 const Order = () => {
@@ -65,7 +61,7 @@ const Order = () => {
         <Link to={`/admin/orders/${orderState[i]?._id}`}>View Orders</Link>
       ),
       amount: orderState[i].totalPrice,
-      coinsEarned: orderState[i].coinsEarned,
+      coinsEarned: orderState[i].orderItems[0]?.product?.reedim,
       status: (
         <>
           <select
