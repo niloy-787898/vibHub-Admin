@@ -7,14 +7,12 @@ import {
 } from "react-icons/ai";
 import { RiCouponLine } from "react-icons/ri";
 import { ImBlog } from "react-icons/im";
-import { IoIosNotifications } from "react-icons/io";
-import { FaClipboardList, FaBloggerB } from "react-icons/fa";
+import { FaClipboardList } from "react-icons/fa";
 import { IoLogOutSharp } from "react-icons/io5";
 import { SiBrandfolder } from "react-icons/si";
 import { BiCategoryAlt } from "react-icons/bi";
 import { Layout, Menu, theme } from "antd";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -125,23 +123,23 @@ const MainLayout = () => {
               icon: <FaClipboardList className="fs-4" />,
               label: "Orders",
             },
-            {
-              key: "marketing",
-              icon: <RiCouponLine className="fs-4" />,
-              label: "Marketing",
-              children: [
-                {
-                  key: "coupon",
-                  icon: <ImBlog className="fs-4" />,
-                  label: "Add Coupon",
-                },
-                {
-                  key: "coupon-list",
-                  icon: <RiCouponLine className="fs-4" />,
-                  label: "Coupon List",
-                },
-              ],
-            },
+            // {
+            //   key: "marketing",
+            //   icon: <RiCouponLine className="fs-4" />,
+            //   label: "Marketing",
+            //   children: [
+            //     {
+            //       key: "coupon",
+            //       icon: <ImBlog className="fs-4" />,
+            //       label: "Add Coupon",
+            //     },
+            //     {
+            //       key: "coupon-list",
+            //       icon: <RiCouponLine className="fs-4" />,
+            //       label: "Coupon List",
+            //     },
+            //   ],
+            // },
             // {
             //   key: "blogs",
             //   icon: <FaBloggerB className="fs-4" />,
