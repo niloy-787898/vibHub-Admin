@@ -58,6 +58,26 @@ export const updateOrder = createAsyncThunk(
     }
   }
 );
+export const getMonthlyData = createAsyncThunk(
+  "orders/monthlydata",
+  async (thunkAPI) => {
+    try {
+      return await authService.getMonthlyOrders();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const getYearlyData = createAsyncThunk(
+  "orders/yearlydata",
+  async (thunkAPI) => {
+    try {
+      return await authService.getyearlyStates();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 export const resetState = createAction("Reset_all");
 
 export const authSlice = createSlice({
@@ -125,6 +145,38 @@ export const authSlice = createSlice({
         state.message = "success";
       })
       .addCase(updateOrder.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+        state.isLoading = false;
+      })
+      .addCase(getMonthlyData.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getMonthlyData.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.monthlydata = action.payload;
+        state.message = "success";
+      })
+      .addCase(getMonthlyData.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+        state.isLoading = false;
+      })
+      .addCase(getYearlyData.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getYearlyData.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.yearlydata = action.payload;
+        state.message = "success";
+      })
+      .addCase(getYearlyData.rejected, (state, action) => {
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;

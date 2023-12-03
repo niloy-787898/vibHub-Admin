@@ -14,7 +14,7 @@ const columns = [
   {
     title: "Name",
     dataIndex: "name",
-    sorter: (a, b) => a.name.length - b.name.length,
+    sorter: (a, b) => a.name?.length - b.name?.length,
   },
 
   {
@@ -34,7 +34,7 @@ const BlogCatagoryList = () => {
   const bCatState = useSelector((state) => state.blogcatagory.blogCatagories);
   console.log(bCatState);
   const data1 = [];
-  for (let i = 0; i < bCatState.length; i++) {
+  for (let i = 0; i < bCatState?.length; i++) {
     data1.push({
       key: i + 1,
       name: bCatState[i].title,

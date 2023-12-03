@@ -34,7 +34,7 @@ const BlogList = () => {
   const getBlogState = useSelector((state) => state.blog.blogs);
  
   const data1 = [];
-  for (let i = 0; i < getBlogState.length; i++) {
+  for (let i = 0; i < getBlogState?.length; i++) {
     data1.push({
       key: i + 1,
       name: getBlogState[i].title,

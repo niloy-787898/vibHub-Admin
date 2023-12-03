@@ -33,7 +33,7 @@ const Customers = () => {
   console.log(customerstate)
   
   const data1 = [];
-  for (let i = 0; i < customerstate.length; i++) {
+  for (let i = 0; i < customerstate?.length; i++) {
     if (customerstate && customerstate[i].role !== "admin") {
       data1.push({
         key: i + 1,

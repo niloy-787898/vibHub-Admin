@@ -12,7 +12,6 @@ const login = async (user) => {
 
 const getOrders = async () => {
   const response = await axios.get(`${base_url}user/all-orders`, config);
-
   return response.data;
 };
 
@@ -29,12 +28,28 @@ const updateOrder = async ( data) => {
   );
   return response.data;
 };
+const getMonthlyOrders = async ( ) => {
+  const response = await axios.get(
+    `${base_url}user/getMonthWiseOrderIncome`,
+    config
+  );
+  return response.data;
+};
+const getyearlyStates = async ( ) => {
+  const response = await axios.get(
+    `${base_url}user/getYearlyTotalOrders`,
+    config
+  );
+  return response.data;
+};
 
 const authService = {
   login,
   getOrders,
   getOrder,
-  updateOrder
+  updateOrder,
+  getMonthlyOrders,
+  getyearlyStates
 };
 
 export default authService;

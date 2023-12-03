@@ -70,9 +70,10 @@
 }
 
 .sub-title {
-  font: 24px;
+  font: 24px !important;
   font-family: Roboto !important;
   color: var(--color-212529);
+  font-weight: 900 !important;
 }
 .desc {
   font: 16px;

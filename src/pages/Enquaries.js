@@ -63,7 +63,7 @@ const Enquaries = () => {
   console.log(enquaryState);
 
   const data1 = [];
-  for (let i = 0; i < enquaryState.length; i++) {
+  for (let i = 0; i < enquaryState?.length; i++) {
     data1.push({
       key: i + 1,
       name: enquaryState[i].name,
