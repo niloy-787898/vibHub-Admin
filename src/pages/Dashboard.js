@@ -152,9 +152,9 @@ const Dashboard = () => {
   };
 
   const data1 = [];
-  if (orderState && orderState.length > 0) {
-    for (let i = 0; i < orderState.length; i++) {
-      const orderItem = orderState[i].orderItems[0] || {}; // To handle potential undefined orderItems
+  if (orderState && Array.isArray(orderState) && orderState.length > 0) {
+    for (let i = 0; i < orderState?.length; i++) {
+      const orderItem = orderState[i]?.orderItems[0] || {}; // To handle potential undefined orderItems
       const product = orderItem.product || {};
 
       data1.push({
@@ -192,8 +192,10 @@ const Dashboard = () => {
           <div className="">
             <p className="desc mb-0 ">Total</p>
             <h4 className="sub-title mb-0 ">
-              {yearlyDataState && yearlyDataState?.length > 0
-                ? yearlyDataState[0]?.count
+              {Array.isArray(yearlyDataState) && yearlyDataState.length > 0
+                ? yearlyDataState[0]?.count !== undefined
+                  ? yearlyDataState[0].count
+                  : "No data"
                 : "No data"}
             </h4>
           </div>
