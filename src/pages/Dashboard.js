@@ -47,14 +47,7 @@ const Dashboard = () => {
   const monthlyDataState = useSelector((state) => state?.auth?.monthlydata);
   const yearlyDataState = useSelector((state) => state?.auth?.yearlydata);
   const orderState = useSelector((state) => state?.auth?.orders);
-  console.log(
-    monthlyDataState,
-    "month",
-    yearlyDataState,
-    "yearlyDataState",
-    orderState,
-    "orderState"
-  );
+
   useEffect(() => {
     dispatch(resetState());
     dispatch(getOrders());
@@ -88,8 +81,8 @@ const Dashboard = () => {
       sales: item.count,
     }));
 
-    setDataMonthlyIncome(transformedData);
-    setDataMonthlySales(transformedData2);
+    setDataMonthlyIncome(transformedData || []);
+    setDataMonthlySales(transformedData2 || []);
   }, [monthlyDataState, yearlyDataState]);
 
   const config = {
@@ -152,7 +145,7 @@ const Dashboard = () => {
   };
 
   const data1 = [];
-  if (orderState && Array.isArray(orderState) && orderState.length > 0) {
+  if (Array.isArray(orderState) && orderState.length > 0) {
     for (let i = 0; i < orderState?.length; i++) {
       const orderItem = orderState[i]?.orderItems[0] || {}; // To handle potential undefined orderItems
       const product = orderItem.product || {};
@@ -179,8 +172,10 @@ const Dashboard = () => {
             <p className="desc mb-0">Total</p>
             <h4 className="sub-title mb-0 ">
               $
-              {yearlyDataState && yearlyDataState?.length > 0
-                ? yearlyDataState[0]?.amount
+              {Array.isArray(yearlyDataState) && yearlyDataState?.length > 0
+                ? yearlyDataState[0]?.amount !== undefined
+                  ? yearlyDataState[0].amount
+                  : "No data"
                 : "No data"}
             </h4>
           </div>
@@ -192,7 +187,7 @@ const Dashboard = () => {
           <div className="">
             <p className="desc mb-0 ">Total</p>
             <h4 className="sub-title mb-0 ">
-              {Array.isArray(yearlyDataState) && yearlyDataState.length > 0
+              {Array.isArray(yearlyDataState) && yearlyDataState?.length > 0
                 ? yearlyDataState[0]?.count !== undefined
                   ? yearlyDataState[0].count
                   : "No data"
